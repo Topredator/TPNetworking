@@ -8,6 +8,8 @@
 
 #import "TPViewController.h"
 
+#import "TPTestTask.h"
+
 @interface TPViewController ()
 
 @end
@@ -17,7 +19,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+	// Do any additional setup after loading the view, typically from a nib.'
+    [[[TPTestTask task] get] subscribeNext:^(TPTestTask *x) {
+        NSLog(@"success = %@", x.serverTotalResponseData);
+    } error:^(NSError * _Nullable error) {
+        NSLog(@"err = %@", error.localizedDescription);
+    }];
 }
 
 - (void)didReceiveMemoryWarning

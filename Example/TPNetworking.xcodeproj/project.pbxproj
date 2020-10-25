@@ -23,6 +23,11 @@
 		6003F5BC195388D20070C39A /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5BB195388D20070C39A /* Tests.m */; };
 		71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */; };
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
+		94178B70254599ED00EEEA9C /* TPHttpDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 94178B66254599EC00EEEA9C /* TPHttpDataManager.m */; };
+		94178B71254599ED00EEEA9C /* TPCustomTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 94178B67254599EC00EEEA9C /* TPCustomTask.m */; };
+		94178B72254599ED00EEEA9C /* TPNetwork-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 94178B6A254599EC00EEEA9C /* TPNetwork-Info.plist */; };
+		94178B73254599ED00EEEA9C /* TPHttpDataSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 94178B6D254599ED00EEEA9C /* TPHttpDataSerialization.m */; };
+		94178B74254599ED00EEEA9C /* TPTestTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 94178B6E254599ED00EEEA9C /* TPTestTask.m */; };
 		D3F46B80F0D1969C2CD825E7 /* Pods_TPNetworking_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04B2E1CE7D1E6635E973F4B6 /* Pods_TPNetworking_Tests.framework */; };
 /* End PBXBuildFile section */
 
@@ -40,7 +45,7 @@
 		04B2E1CE7D1E6635E973F4B6 /* Pods_TPNetworking_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TPNetworking_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0AC2E7C7A48B5E06BDEB1D86 /* Pods-TPNetworking_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TPNetworking_Example.debug.xcconfig"; path = "Target Support Files/Pods-TPNetworking_Example/Pods-TPNetworking_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		40BAD7C41813AA487E1BF04D /* Pods_TPNetworking_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TPNetworking_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		4E060A90F63DC9B9E2B37770 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		4E060A90F63DC9B9E2B37770 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		6003F58A195388D20070C39A /* TPNetworking_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TPNetworking_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6003F58D195388D20070C39A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		6003F58F195388D20070C39A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -60,12 +65,22 @@
 		6003F5B9195388D20070C39A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		6003F5BB195388D20070C39A /* Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests.m; sourceTree = "<group>"; };
 		606FC2411953D9B200FFA9A0 /* Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tests-Prefix.pch"; sourceTree = "<group>"; };
-		6AA1A3499150AE94755ED1FF /* TPNetworking.podspec */ = {isa = PBXFileReference; includeInIndex = 1; name = TPNetworking.podspec; path = ../TPNetworking.podspec; sourceTree = "<group>"; };
+		6AA1A3499150AE94755ED1FF /* TPNetworking.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = TPNetworking.podspec; path = ../TPNetworking.podspec; sourceTree = "<group>"; };
 		71719F9E1E33DC2100824A3D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		873B8AEA1B1F5CCA007FD442 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		87C33A26B50FC070E034C185 /* Pods-TPNetworking_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TPNetworking_Tests.release.xcconfig"; path = "Target Support Files/Pods-TPNetworking_Tests/Pods-TPNetworking_Tests.release.xcconfig"; sourceTree = "<group>"; };
+		94178B66254599EC00EEEA9C /* TPHttpDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPHttpDataManager.m; sourceTree = "<group>"; };
+		94178B67254599EC00EEEA9C /* TPCustomTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPCustomTask.m; sourceTree = "<group>"; };
+		94178B68254599EC00EEEA9C /* TPHttpDataSerialization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPHttpDataSerialization.h; sourceTree = "<group>"; };
+		94178B69254599EC00EEEA9C /* TPHttpDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPHttpDataManager.h; sourceTree = "<group>"; };
+		94178B6A254599EC00EEEA9C /* TPNetwork-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "TPNetwork-Info.plist"; sourceTree = "<group>"; };
+		94178B6B254599ED00EEEA9C /* TPNetwork-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TPNetwork-Prefix.pch"; sourceTree = "<group>"; };
+		94178B6C254599ED00EEEA9C /* TPTestTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPTestTask.h; sourceTree = "<group>"; };
+		94178B6D254599ED00EEEA9C /* TPHttpDataSerialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPHttpDataSerialization.m; sourceTree = "<group>"; };
+		94178B6E254599ED00EEEA9C /* TPTestTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPTestTask.m; sourceTree = "<group>"; };
+		94178B6F254599ED00EEEA9C /* TPCustomTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPCustomTask.h; sourceTree = "<group>"; };
 		E9FAE744E68FB0F98ADE43FE /* Pods-TPNetworking_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TPNetworking_Example.release.xcconfig"; path = "Target Support Files/Pods-TPNetworking_Example/Pods-TPNetworking_Example.release.xcconfig"; sourceTree = "<group>"; };
-		F9D6A92E6581FD334F5E5252 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		F9D6A92E6581FD334F5E5252 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		FB2E9DFE983BD7231E481F17 /* Pods-TPNetworking_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TPNetworking_Tests.debug.xcconfig"; path = "Target Support Files/Pods-TPNetworking_Tests/Pods-TPNetworking_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -132,6 +147,11 @@
 		6003F593195388D20070C39A /* Example for TPNetworking */ = {
 			isa = PBXGroup;
 			children = (
+				94178B77254599F000EEEA9C /* Network */,
+				94178B6A254599EC00EEEA9C /* TPNetwork-Info.plist */,
+				94178B6B254599ED00EEEA9C /* TPNetwork-Prefix.pch */,
+				94178B6C254599ED00EEEA9C /* TPTestTask.h */,
+				94178B6E254599ED00EEEA9C /* TPTestTask.m */,
 				6003F59C195388D20070C39A /* TPAppDelegate.h */,
 				6003F59D195388D20070C39A /* TPAppDelegate.m */,
 				873B8AEA1B1F5CCA007FD442 /* Main.storyboard */,
@@ -193,8 +213,20 @@
 				FB2E9DFE983BD7231E481F17 /* Pods-TPNetworking_Tests.debug.xcconfig */,
 				87C33A26B50FC070E034C185 /* Pods-TPNetworking_Tests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		94178B77254599F000EEEA9C /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				94178B6F254599ED00EEEA9C /* TPCustomTask.h */,
+				94178B67254599EC00EEEA9C /* TPCustomTask.m */,
+				94178B69254599EC00EEEA9C /* TPHttpDataManager.h */,
+				94178B66254599EC00EEEA9C /* TPHttpDataManager.m */,
+				94178B68254599EC00EEEA9C /* TPHttpDataSerialization.h */,
+				94178B6D254599ED00EEEA9C /* TPHttpDataSerialization.m */,
+			);
+			name = Network;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -258,6 +290,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -277,6 +310,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				94178B72254599ED00EEEA9C /* TPNetwork-Info.plist in Resources */,
 				873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */,
 				71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */,
 				6003F5A9195388D20070C39A /* Images.xcassets in Resources */,
@@ -324,10 +358,16 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-TPNetworking_Example/Pods-TPNetworking_Example-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
+				"${BUILT_PRODUCTS_DIR}/CocoaLumberjack/CocoaLumberjack.framework",
+				"${BUILT_PRODUCTS_DIR}/ReactiveObjC/ReactiveObjC.framework",
 				"${BUILT_PRODUCTS_DIR}/TPNetworking/TPNetworking.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CocoaLumberjack.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactiveObjC.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TPNetworking.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -364,9 +404,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				94178B74254599ED00EEEA9C /* TPTestTask.m in Sources */,
 				6003F59E195388D20070C39A /* TPAppDelegate.m in Sources */,
 				6003F5A7195388D20070C39A /* TPViewController.m in Sources */,
+				94178B73254599ED00EEEA9C /* TPHttpDataSerialization.m in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,
+				94178B70254599ED00EEEA9C /* TPHttpDataManager.m in Sources */,
+				94178B71254599ED00EEEA9C /* TPCustomTask.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

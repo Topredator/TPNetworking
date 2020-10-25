@@ -1,0 +1,6 @@
+framework module TPNetworking {
+  umbrella header "TPNetworking-umbrella.h"
+
+  export *
+  module * { export * }
+}
