@@ -1,0 +1,13 @@
+use_frameworks!
+
+platform :ios, '8.0'
+
+target 'TPNetworking_Example' do
+  pod 'TPNetworking', :path => '../'
+
+  target 'TPNetworking_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
