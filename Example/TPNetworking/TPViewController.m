@@ -22,11 +22,6 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.'
-//    [[[TPTestTask task] get] subscribeNext:^(TPTestTask *x) {
-//        NSLog(@"success = %@", x.serverTotalResponseData);
-//    } error:^(NSError * _Nullable error) {
-//        NSLog(@"err = %@", error.localizedDescription);
-//    }];
     
     TPUserTask *task = [TPUserTask task];
     task.req_token = @"123";
