@@ -8,7 +8,7 @@
 
 #import "TPHttpDataSerialization.h"
 
-#import <TPNetworking/YYModel.h>
+#import <TPNetworking/TPModel.h>
 @implementation TPHTTPDataRequestSerializer
 - (instancetype)init {
     self = [super init];
@@ -20,7 +20,7 @@
 #pragma mark ==================  TPHTTPRequestSerialization   ==================
 - (id)encodeHTTPRequestParameters:(id)parameters task:(__kindof TPHttpTask *)task error:(NSError *__autoreleasing *)error {
     if (!parameters) {
-        parameters = [task yy_modelToJSONObject];
+        parameters = [task tp_modelToJSONObject];
     }
     return parameters;
 }
@@ -41,7 +41,7 @@
 //        NSDictionary *info = @{NSLocalizedDescriptionKey: message};
 //        *error = [NSError errorWithDomain:TPHTTPResponseUnderlyingDomain code:resultCode userInfo:info];
 //    } else {
-//        [task yy_modelResetWithJSON:responseObject[@"data"]];
+//        [task tp_modelResetWithJSON:responseObject[@"data"]];
 //    }
     return responseObject;
 }

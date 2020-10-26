@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'TPNetworking'
-  s.version          = '0.0.1'
+  s.version          = '0.0.2'
   s.summary          = 'TPNetworking iOS系统网络库'
 
 # This description is used to generate tags and improve search results.
@@ -40,11 +40,11 @@ TODO: Add long description of the pod here.
   s.subspec 'Core' do |ss|
     ss.source_files = 'TPNetworking/Classes/Core/**/*'
     ss.dependency 'TPNetworking/Base'
-    ss.dependency 'TPNetworking/YYModel'
+    ss.dependency 'TPNetworking/TPModel'
     ss.dependency 'ReactiveObjC'
   end
-  s.subspec 'YYModel' do |ss|
-      ss.source_files = 'TPNetworking/Classes/YYModel/**/*'
+  s.subspec 'TPModel' do |ss|
+      ss.source_files = 'TPNetworking/Classes/TPModel/**/*'
   end
   # s.resource_bundles = {
   #   'TPNetworking' => ['TPNetworking/Assets/*.png']

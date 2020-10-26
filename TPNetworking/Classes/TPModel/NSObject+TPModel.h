@@ -1,13 +1,3 @@
-//
-//  NSObject+YYModel.h
-//  YYModel <https://github.com/ibireme/YYModel>
-//
-//  Created by ibireme on 15/5/10.
-//  Copyright (c) 2015 ibireme.
-//
-//  This source code is licensed under the MIT-style license found in the
-//  LICENSE file in the root directory of this source tree.
-//
 
 #import <Foundation/Foundation.h>
 
@@ -20,7 +10,7 @@ NS_ASSUME_NONNULL_BEGIN
  * Set object properties with a key-value dictionary (like KVC).
  * Implementations of `NSCoding`, `NSCopying`, `-hash` and `-isEqual:`.
  
- See `YYModel` protocol for custom methods.
+ See `TPModel` protocol for custom methods.
  
  
  Sample Code:
@@ -43,10 +33,10 @@ NS_ASSUME_NONNULL_BEGIN
     
      int main() {
          // create model from json
-         YYBook *book = [YYBook yy_modelWithJSON:@"{\"name\": \"Harry Potter\", \"pages\": 256, \"author\": {\"name\": \"J.K.Rowling\", \"birthday\": \"1965-07-31\" }}"];
+         YYBook *book = [YYBook tp_modelWithJSON:@"{\"name\": \"Harry Potter\", \"pages\": 256, \"author\": {\"name\": \"J.K.Rowling\", \"birthday\": \"1965-07-31\" }}"];
  
          // convert model to json
-         NSString *json = [book yy_modelToJSONString];
+         NSString *json = [book tp_modelToJSONString];
          // {"author":{"name":"J.K.Rowling","birthday":"1965-07-31T00:00:00+0000"},"name":"Harry Potter","pages":256}
      }
  
@@ -57,15 +47,15 @@ NS_ASSUME_NONNULL_BEGIN
      @end
  
      @implementation YYShadow
-     - (void)encodeWithCoder:(NSCoder *)aCoder { [self yy_modelEncodeWithCoder:aCoder]; }
-     - (id)initWithCoder:(NSCoder *)aDecoder { self = [super init]; return [self yy_modelInitWithCoder:aDecoder]; }
-     - (id)copyWithZone:(NSZone *)zone { return [self yy_modelCopy]; }
-     - (NSUInteger)hash { return [self yy_modelHash]; }
-     - (BOOL)isEqual:(id)object { return [self yy_modelIsEqual:object]; }
+     - (void)encodeWithCoder:(NSCoder *)aCoder { [self tp_modelEncodeWithCoder:aCoder]; }
+     - (id)initWithCoder:(NSCoder *)aDecoder { self = [super init]; return [self tp_modelInitWithCoder:aDecoder]; }
+     - (id)copyWithZone:(NSZone *)zone { return [self tp_modelCopy]; }
+     - (NSUInteger)hash { return [self tp_modelHash]; }
+     - (BOOL)isEqual:(id)object { return [self tp_modelIsEqual:object]; }
      @end
  
  */
-@interface NSObject (YYModel)
+@interface NSObject (TPModel)
 
 /**
  Creates and returns a new instance of the receiver from a json.
@@ -75,7 +65,7 @@ NS_ASSUME_NONNULL_BEGIN
  
  @return A new instance created from the json, or nil if an error occurs.
  */
-+ (nullable instancetype)yy_modelWithJSON:(id)json;
++ (nullable instancetype)tp_modelWithJSON:(id)json;
 
 /**
  Creates and returns a new instance of the receiver from a key-value dictionary.
@@ -96,7 +86,7 @@ NS_ASSUME_NONNULL_BEGIN
      `NSValue` -> struct or union, such as CGRect, CGSize, ...
      `NSString` -> SEL, Class.
  */
-+ (nullable instancetype)yy_modelWithDictionary:(NSDictionary *)dictionary;
++ (nullable instancetype)tp_modelWithDictionary:(NSDictionary *)dictionary;
 
 /**
  Set the receiver's properties with a json object.
@@ -108,9 +98,9 @@ NS_ASSUME_NONNULL_BEGIN
  
  @return Whether succeed.
  */
-- (BOOL)yy_modelSetWithJSON:(id)json;
+- (BOOL)tp_modelSetWithJSON:(id)json;
 /// 重置属性(如果字典里没有该属性的key，直接将该属性置为nil)
-- (BOOL)yy_modelResetWithJSON:(id)json;
+- (BOOL)tp_modelResetWithJSON:(id)json;
 /**
  Set the receiver's properties with a key-value dictionary.
  
@@ -129,7 +119,7 @@ NS_ASSUME_NONNULL_BEGIN
  
  @return Whether succeed.
  */
-- (BOOL)yy_modelSetWithDictionary:(NSDictionary *)dic;
+- (BOOL)tp_modelSetWithDictionary:(NSDictionary *)dic;
 
 /**
  Generate a json object from the receiver's properties.
@@ -141,7 +131,7 @@ NS_ASSUME_NONNULL_BEGIN
  If the reciver is `NSArray`, `NSDictionary` or `NSSet`, it just convert
  the inner object to json object.
  */
-- (nullable id)yy_modelToJSONObject;
+- (nullable id)tp_modelToJSONObject;
 
 /**
  Generate a json string's data from the receiver's properties.
@@ -152,7 +142,7 @@ NS_ASSUME_NONNULL_BEGIN
  If the reciver is `NSArray`, `NSDictionary` or `NSSet`, it will also convert the 
  inner object to json string.
  */
-- (nullable NSData *)yy_modelToJSONData;
+- (nullable NSData *)tp_modelToJSONData;
 
 /**
  Generate a json string from the receiver's properties.
@@ -163,21 +153,21 @@ NS_ASSUME_NONNULL_BEGIN
  If the reciver is `NSArray`, `NSDictionary` or `NSSet`, it will also convert the 
  inner object to json string.
  */
-- (nullable NSString *)yy_modelToJSONString;
+- (nullable NSString *)tp_modelToJSONString;
 
 /**
  Copy a instance with the receiver's properties.
  
  @return A copied instance, or nil if an error occurs.
  */
-- (nullable id)yy_modelCopy;
+- (nullable id)tp_modelCopy;
 
 /**
  Encode the receiver's properties to a coder.
  
  @param aCoder  An archiver object.
  */
-- (void)yy_modelEncodeWithCoder:(NSCoder *)aCoder;
+- (void)tp_modelEncodeWithCoder:(NSCoder *)aCoder;
 
 /**
  Decode the receiver's properties from a decoder.
@@ -186,14 +176,14 @@ NS_ASSUME_NONNULL_BEGIN
  
  @return self
  */
-- (id)yy_modelInitWithCoder:(NSCoder *)aDecoder;
+- (id)tp_modelInitWithCoder:(NSCoder *)aDecoder;
 
 /**
  Get a hash code with the receiver's properties.
  
  @return Hash code.
  */
-- (NSUInteger)yy_modelHash;
+- (NSUInteger)tp_modelHash;
 
 /**
  Compares the receiver with another object for equality, based on properties.
@@ -202,14 +192,14 @@ NS_ASSUME_NONNULL_BEGIN
  
  @return `YES` if the reciever is equal to the object, otherwise `NO`.
  */
-- (BOOL)yy_modelIsEqual:(id)model;
+- (BOOL)tp_modelIsEqual:(id)model;
 
 /**
  Description method for debugging purposes based on properties.
  
  @return A string that describes the contents of the receiver.
  */
-- (NSString *)yy_modelDescription;
+- (NSString *)tp_modelDescription;
 
 @end
 
@@ -218,7 +208,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  Provide some data-model method for NSArray.
  */
-@interface NSArray (YYModel)
+@interface NSArray (TPModel)
 
 /**
  Creates and returns an array from a json-array.
@@ -230,7 +220,7 @@ NS_ASSUME_NONNULL_BEGIN
  
  @return A array, or nil if an error occurs.
  */
-+ (nullable NSArray *)yy_modelArrayWithClass:(Class)cls json:(id)json;
++ (nullable NSArray *)tp_modelArrayWithClass:(Class)cls json:(id)json;
 
 @end
 
@@ -239,7 +229,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  Provide some data-model method for NSDictionary.
  */
-@interface NSDictionary (YYModel)
+@interface NSDictionary (TPModel)
 
 /**
  Creates and returns a dictionary from a json.
@@ -251,7 +241,7 @@ NS_ASSUME_NONNULL_BEGIN
  
  @return A dictionary, or nil if an error occurs.
  */
-+ (nullable NSDictionary *)yy_modelDictionaryWithClass:(Class)cls json:(id)json;
++ (nullable NSDictionary *)tp_modelDictionaryWithClass:(Class)cls json:(id)json;
 @end
 
 
@@ -259,9 +249,9 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  If the default model transform does not fit to your model class, implement one or
  more method in this protocol to change the default key-value transform process.
- There's no need to add '<YYModel>' to your class header.
+ There's no need to add '<TPModel>' to your class header.
  */
-@protocol YYModel <NSObject>
+@protocol TPModel <NSObject>
 @optional
 
 /**
@@ -291,7 +281,7 @@ NS_ASSUME_NONNULL_BEGIN
         @end
         
         @implementation YYBook
-        + (NSDictionary *)modelCustomPropertyMapper {
+        + (NSDictionary *)tp_modelCustomPropertyMapper {
             return @{@"name"  : @"n",
                      @"page"  : @"p",
                      @"desc"  : @"ext.desc",
@@ -301,7 +291,7 @@ NS_ASSUME_NONNULL_BEGIN
  
  @return A custom mapper for properties.
  */
-+ (nullable NSDictionary<NSString *, id> *)modelCustomPropertyMapper;
++ (nullable NSDictionary<NSString *, id> *)tp_modelCustomPropertyMapper;
 
 /**
  The generic class mapper for container properties.
@@ -321,7 +311,7 @@ NS_ASSUME_NONNULL_BEGIN
         @end
  
         @implementation YYAttributes
-        + (NSDictionary *)modelContainerPropertyGenericClass {
+        + (NSDictionary *)tp_modelContainerPropertyGenericClass {
             return @{@"shadows" : [YYShadow class],
                      @"borders" : YYBorder.class,
                      @"attachments" : @"YYAttachment" };
@@ -330,7 +320,7 @@ NS_ASSUME_NONNULL_BEGIN
  
  @return A class mapper.
  */
-+ (nullable NSDictionary<NSString *, id> *)modelContainerPropertyGenericClass;
++ (nullable NSDictionary<NSString *, id> *)tp_modelContainerPropertyGenericClass;
 
 /**
  If you need to create instances of different classes during json->object transform,
@@ -338,14 +328,14 @@ NS_ASSUME_NONNULL_BEGIN
  
  @discussion If the model implements this method, it will be called to determine resulting class
  during `+modelWithJSON:`, `+modelWithDictionary:`, conveting object of properties of parent objects 
- (both singular and containers via `+modelContainerPropertyGenericClass`).
+ (both singular and containers via `+tp_modelContainerPropertyGenericClass`).
  
  Example:
         @@class YYCircle, YYRectangle, YYLine;
  
         @implementation YYShape
 
-        + (Class)modelCustomClassForDictionary:(NSDictionary*)dictionary {
+        + (Class)tp_modelCustomClassForDictionary:(NSDictionary*)dictionary {
             if (dictionary[@"radius"] != nil) {
                 return [YYCircle class];
             } else if (dictionary[@"width"] != nil) {
@@ -364,7 +354,7 @@ NS_ASSUME_NONNULL_BEGIN
  @return Class to create from this dictionary, `nil` to use current class.
 
  */
-+ (nullable Class)modelCustomClassForDictionary:(NSDictionary *)dictionary;
++ (nullable Class)tp_modelCustomClassForDictionary:(NSDictionary *)dictionary;
 
 /**
  All the properties in blacklist will be ignored in model transform process.
@@ -372,7 +362,7 @@ NS_ASSUME_NONNULL_BEGIN
  
  @return An array of property's name.
  */
-+ (nullable NSArray<NSString *> *)modelPropertyBlacklist;
++ (nullable NSArray<NSString *> *)tp_modelPropertyBlacklist;
 
 /**
  If a property is not in the whitelist, it will be ignored in model transform process.
@@ -380,10 +370,10 @@ NS_ASSUME_NONNULL_BEGIN
  
  @return An array of property's name.
  */
-+ (nullable NSArray<NSString *> *)modelPropertyWhitelist;
++ (nullable NSArray<NSString *> *)tp_modelPropertyWhitelist;
 
 /**
- This method's behavior is similar to `- (BOOL)modelCustomTransformFromDictionary:(NSDictionary *)dic;`, 
+ This method's behavior is similar to `- (BOOL)tp_modelCustomTransformFromDictionary:(NSDictionary *)dic;`,
  but be called before the model transform.
  
  @discussion If the model implements this method, it will be called before
@@ -394,7 +384,7 @@ NS_ASSUME_NONNULL_BEGIN
  
  @return Returns the modified dictionary, or nil to ignore this model.
  */
-- (NSDictionary *)modelCustomWillTransformFromDictionary:(NSDictionary *)dic;
+- (NSDictionary *)tp_modelCustomWillTransformFromDictionary:(NSDictionary *)dic;
 
 /**
  If the default json-to-model transform does not fit to your model object, implement
@@ -409,7 +399,7 @@ NS_ASSUME_NONNULL_BEGIN
  
  @return Returns YES if the model is valid, or NO to ignore this model.
  */
-- (BOOL)modelCustomTransformFromDictionary:(NSDictionary *)dic;
+- (BOOL)tp_modelCustomTransformFromDictionary:(NSDictionary *)dic;
 
 /**
  If the default model-to-json transform does not fit to your model class, implement
@@ -424,19 +414,19 @@ NS_ASSUME_NONNULL_BEGIN
  
  @return Returns YES if the model is valid, or NO to ignore this model.
  */
-- (BOOL)modelCustomTransformToDictionary:(NSMutableDictionary *)dic;
+- (BOOL)tp_modelCustomTransformToDictionary:(NSMutableDictionary *)dic;
 
 /**
  定义模型转换到json对象时，允许转换的属性前缀。
  比如返回：@"req_"，表示只有req_开头的属性才能转换为json对象
  @return 返回nil，表示不做处理
  */
-+ (NSString *)prefixForModelWriteableProerties;
++ (NSString *)tp_prefixForModelWriteableProerties;
 
 /**
  透传字典里的某些字段
  */
-+ (NSArray *)modelPenetrateKeyPathList;
++ (NSArray *)tp_modelPenetrateKeyPathList;
 @end
 
 NS_ASSUME_NONNULL_END

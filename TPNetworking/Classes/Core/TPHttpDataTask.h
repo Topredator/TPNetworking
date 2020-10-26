@@ -6,11 +6,11 @@
 //
 
 #import "TPHttpTask.h"
-#import "YYModel.h"
+#import "TPModel.h"
 #import <ReactiveObjC/ReactiveObjC.h>
 NS_ASSUME_NONNULL_BEGIN
 
-@interface TPHttpDataTask : TPHttpTask <YYModel>
+@interface TPHttpDataTask : TPHttpTask <TPModel>
 /**
  持久化 解档获取请求task
  */

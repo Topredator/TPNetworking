@@ -36,19 +36,19 @@
 }
 #pragma mark - NSCoding
 - (void)encodeWithCoder:(NSCoder *)aCoder {
-    return [self yy_modelEncodeWithCoder:aCoder];
+    return [self tp_modelEncodeWithCoder:aCoder];
 }
 
 - (instancetype)initWithCoder:(NSCoder *)aDecoder {
     self = [super init];
-    return [self yy_modelInitWithCoder:aDecoder];
+    return [self tp_modelInitWithCoder:aDecoder];
 }
 /// 黑名单
-+ (NSArray<NSString *> *)modelPropertyBlacklist {
++ (NSArray<NSString *> *)tp_modelPropertyBlacklist {
     return @[@"requestURL", @"networkError", @"sessionTask", @"formDataMaker"];
 }
 /// 识别request属性的前缀
-+ (NSString *)prefixForModelWriteableProerties {
++ (NSString *)tp_prefixForModelWriteableProerties {
     return @"req_";
 }
 @end

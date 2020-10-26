@@ -1,53 +1,44 @@
-//
-//  YYClassInfo.m
-//  YYModel <https://github.com/ibireme/YYModel>
-//
-//  Created by ibireme on 15/5/9.
-//  Copyright (c) 2015 ibireme.
-//
-//  This source code is licensed under the MIT-style license found in the
-//  LICENSE file in the root directory of this source tree.
-//
 
-#import "YYClassInfo.h"
+
+#import "TPClassInfo.h"
 #import <objc/runtime.h>
 
-YYEncodingType YYEncodingGetType(const char *typeEncoding) {
+TPEncodingType TPEncodingGetType(const char *typeEncoding) {
     char *type = (char *)typeEncoding;
-    if (!type) return YYEncodingTypeUnknown;
+    if (!type) return TPEncodingTypeUnknown;
     size_t len = strlen(type);
-    if (len == 0) return YYEncodingTypeUnknown;
+    if (len == 0) return TPEncodingTypeUnknown;
     
-    YYEncodingType qualifier = 0;
+    TPEncodingType qualifier = 0;
     bool prefix = true;
     while (prefix) {
         switch (*type) {
             case 'r': {
-                qualifier |= YYEncodingTypeQualifierConst;
+                qualifier |= TPEncodingTypeQualifierConst;
                 type++;
             } break;
             case 'n': {
-                qualifier |= YYEncodingTypeQualifierIn;
+                qualifier |= TPEncodingTypeQualifierIn;
                 type++;
             } break;
             case 'N': {
-                qualifier |= YYEncodingTypeQualifierInout;
+                qualifier |= TPEncodingTypeQualifierInout;
                 type++;
             } break;
             case 'o': {
-                qualifier |= YYEncodingTypeQualifierOut;
+                qualifier |= TPEncodingTypeQualifierOut;
                 type++;
             } break;
             case 'O': {
-                qualifier |= YYEncodingTypeQualifierBycopy;
+                qualifier |= TPEncodingTypeQualifierBycopy;
                 type++;
             } break;
             case 'R': {
-                qualifier |= YYEncodingTypeQualifierByref;
+                qualifier |= TPEncodingTypeQualifierByref;
                 type++;
             } break;
             case 'V': {
-                qualifier |= YYEncodingTypeQualifierOneway;
+                qualifier |= TPEncodingTypeQualifierOneway;
                 type++;
             } break;
             default: { prefix = false; } break;
@@ -55,42 +46,42 @@ YYEncodingType YYEncodingGetType(const char *typeEncoding) {
     }
 
     len = strlen(type);
-    if (len == 0) return YYEncodingTypeUnknown | qualifier;
+    if (len == 0) return TPEncodingTypeUnknown | qualifier;
 
     switch (*type) {
-        case 'v': return YYEncodingTypeVoid | qualifier;
-        case 'B': return YYEncodingTypeBool | qualifier;
-        case 'c': return YYEncodingTypeInt8 | qualifier;
-        case 'C': return YYEncodingTypeUInt8 | qualifier;
-        case 's': return YYEncodingTypeInt16 | qualifier;
-        case 'S': return YYEncodingTypeUInt16 | qualifier;
-        case 'i': return YYEncodingTypeInt32 | qualifier;
-        case 'I': return YYEncodingTypeUInt32 | qualifier;
-        case 'l': return YYEncodingTypeInt32 | qualifier;
-        case 'L': return YYEncodingTypeUInt32 | qualifier;
-        case 'q': return YYEncodingTypeInt64 | qualifier;
-        case 'Q': return YYEncodingTypeUInt64 | qualifier;
-        case 'f': return YYEncodingTypeFloat | qualifier;
-        case 'd': return YYEncodingTypeDouble | qualifier;
-        case 'D': return YYEncodingTypeLongDouble | qualifier;
-        case '#': return YYEncodingTypeClass | qualifier;
-        case ':': return YYEncodingTypeSEL | qualifier;
-        case '*': return YYEncodingTypeCString | qualifier;
-        case '^': return YYEncodingTypePointer | qualifier;
-        case '[': return YYEncodingTypeCArray | qualifier;
-        case '(': return YYEncodingTypeUnion | qualifier;
-        case '{': return YYEncodingTypeStruct | qualifier;
+        case 'v': return TPEncodingTypeVoid | qualifier;
+        case 'B': return TPEncodingTypeBool | qualifier;
+        case 'c': return TPEncodingTypeInt8 | qualifier;
+        case 'C': return TPEncodingTypeUInt8 | qualifier;
+        case 's': return TPEncodingTypeInt16 | qualifier;
+        case 'S': return TPEncodingTypeUInt16 | qualifier;
+        case 'i': return TPEncodingTypeInt32 | qualifier;
+        case 'I': return TPEncodingTypeUInt32 | qualifier;
+        case 'l': return TPEncodingTypeInt32 | qualifier;
+        case 'L': return TPEncodingTypeUInt32 | qualifier;
+        case 'q': return TPEncodingTypeInt64 | qualifier;
+        case 'Q': return TPEncodingTypeUInt64 | qualifier;
+        case 'f': return TPEncodingTypeFloat | qualifier;
+        case 'd': return TPEncodingTypeDouble | qualifier;
+        case 'D': return TPEncodingTypeLongDouble | qualifier;
+        case '#': return TPEncodingTypeClass | qualifier;
+        case ':': return TPEncodingTypeSEL | qualifier;
+        case '*': return TPEncodingTypeCString | qualifier;
+        case '^': return TPEncodingTypePointer | qualifier;
+        case '[': return TPEncodingTypeCArray | qualifier;
+        case '(': return TPEncodingTypeUnion | qualifier;
+        case '{': return TPEncodingTypeStruct | qualifier;
         case '@': {
             if (len == 2 && *(type + 1) == '?')
-                return YYEncodingTypeBlock | qualifier;
+                return TPEncodingTypeBlock | qualifier;
             else
-                return YYEncodingTypeObject | qualifier;
+                return TPEncodingTypeObject | qualifier;
         }
-        default: return YYEncodingTypeUnknown | qualifier;
+        default: return TPEncodingTypeUnknown | qualifier;
     }
 }
 
-@implementation YYClassIvarInfo
+@implementation TPClassIvarInfo
 
 - (instancetype)initWithIvar:(Ivar)ivar {
     if (!ivar) return nil;
@@ -104,14 +95,14 @@ YYEncodingType YYEncodingGetType(const char *typeEncoding) {
     const char *typeEncoding = ivar_getTypeEncoding(ivar);
     if (typeEncoding) {
         _typeEncoding = [NSString stringWithUTF8String:typeEncoding];
-        _type = YYEncodingGetType(typeEncoding);
+        _type = TPEncodingGetType(typeEncoding);
     }
     return self;
 }
 
 @end
 
-@implementation YYClassMethodInfo
+@implementation TPClassMethodInfo
 
 - (instancetype)initWithMethod:(Method)method {
     if (!method) return nil;
@@ -148,7 +139,7 @@ YYEncodingType YYEncodingGetType(const char *typeEncoding) {
 
 @end
 
-@implementation YYClassPropertyInfo
+@implementation TPClassPropertyInfo
 
 - (instancetype)initWithProperty:(objc_property_t)property {
     if (!property) return nil;
@@ -159,7 +150,7 @@ YYEncodingType YYEncodingGetType(const char *typeEncoding) {
         _name = [NSString stringWithUTF8String:name];
     }
     
-    YYEncodingType type = 0;
+    TPEncodingType type = 0;
     unsigned int attrCount;
     objc_property_attribute_t *attrs = property_copyAttributeList(property, &attrCount);
     for (unsigned int i = 0; i < attrCount; i++) {
@@ -167,9 +158,9 @@ YYEncodingType YYEncodingGetType(const char *typeEncoding) {
             case 'T': { // Type encoding
                 if (attrs[i].value) {
                     _typeEncoding = [NSString stringWithUTF8String:attrs[i].value];
-                    type = YYEncodingGetType(attrs[i].value);
+                    type = TPEncodingGetType(attrs[i].value);
                     
-                    if ((type & YYEncodingTypeMask) == YYEncodingTypeObject && _typeEncoding.length) {
+                    if ((type & TPEncodingTypeMask) == TPEncodingTypeObject && _typeEncoding.length) {
                         NSScanner *scanner = [NSScanner scannerWithString:_typeEncoding];
                         if (![scanner scanString:@"@\"" intoString:NULL]) continue;
                         
@@ -199,31 +190,31 @@ YYEncodingType YYEncodingGetType(const char *typeEncoding) {
                 }
             } break;
             case 'R': {
-                type |= YYEncodingTypePropertyReadonly;
+                type |= TPEncodingTypePropertyReadonly;
             } break;
             case 'C': {
-                type |= YYEncodingTypePropertyCopy;
+                type |= TPEncodingTypePropertyCopy;
             } break;
             case '&': {
-                type |= YYEncodingTypePropertyRetain;
+                type |= TPEncodingTypePropertyRetain;
             } break;
             case 'N': {
-                type |= YYEncodingTypePropertyNonatomic;
+                type |= TPEncodingTypePropertyNonatomic;
             } break;
             case 'D': {
-                type |= YYEncodingTypePropertyDynamic;
+                type |= TPEncodingTypePropertyDynamic;
             } break;
             case 'W': {
-                type |= YYEncodingTypePropertyWeak;
+                type |= TPEncodingTypePropertyWeak;
             } break;
             case 'G': {
-                type |= YYEncodingTypePropertyCustomGetter;
+                type |= TPEncodingTypePropertyCustomGetter;
                 if (attrs[i].value) {
                     _getter = NSSelectorFromString([NSString stringWithUTF8String:attrs[i].value]);
                 }
             } break;
             case 'S': {
-                type |= YYEncodingTypePropertyCustomSetter;
+                type |= TPEncodingTypePropertyCustomSetter;
                 if (attrs[i].value) {
                     _setter = NSSelectorFromString([NSString stringWithUTF8String:attrs[i].value]);
                 }
@@ -250,7 +241,8 @@ YYEncodingType YYEncodingGetType(const char *typeEncoding) {
 
 @end
 
-@implementation YYClassInfo {
+@implementation TPClassInfo
+{
     BOOL _needUpdate;
 }
 
@@ -282,7 +274,7 @@ YYEncodingType YYEncodingGetType(const char *typeEncoding) {
         NSMutableDictionary *methodInfos = [NSMutableDictionary new];
         _methodInfos = methodInfos;
         for (unsigned int i = 0; i < methodCount; i++) {
-            YYClassMethodInfo *info = [[YYClassMethodInfo alloc] initWithMethod:methods[i]];
+            TPClassMethodInfo *info = [[TPClassMethodInfo alloc] initWithMethod:methods[i]];
             if (info.name) methodInfos[info.name] = info;
         }
         free(methods);
@@ -293,7 +285,7 @@ YYEncodingType YYEncodingGetType(const char *typeEncoding) {
         NSMutableDictionary *propertyInfos = [NSMutableDictionary new];
         _propertyInfos = propertyInfos;
         for (unsigned int i = 0; i < propertyCount; i++) {
-            YYClassPropertyInfo *info = [[YYClassPropertyInfo alloc] initWithProperty:properties[i]];
+            TPClassPropertyInfo *info = [[TPClassPropertyInfo alloc] initWithProperty:properties[i]];
             if (info.name) propertyInfos[info.name] = info;
         }
         free(properties);
@@ -305,7 +297,7 @@ YYEncodingType YYEncodingGetType(const char *typeEncoding) {
         NSMutableDictionary *ivarInfos = [NSMutableDictionary new];
         _ivarInfos = ivarInfos;
         for (unsigned int i = 0; i < ivarCount; i++) {
-            YYClassIvarInfo *info = [[YYClassIvarInfo alloc] initWithIvar:ivars[i]];
+            TPClassIvarInfo *info = [[TPClassIvarInfo alloc] initWithIvar:ivars[i]];
             if (info.name) ivarInfos[info.name] = info;
         }
         free(ivars);
@@ -338,13 +330,13 @@ YYEncodingType YYEncodingGetType(const char *typeEncoding) {
         lock = dispatch_semaphore_create(1);
     });
     dispatch_semaphore_wait(lock, DISPATCH_TIME_FOREVER);
-    YYClassInfo *info = CFDictionaryGetValue(class_isMetaClass(cls) ? metaCache : classCache, (__bridge const void *)(cls));
+    TPClassInfo *info = CFDictionaryGetValue(class_isMetaClass(cls) ? metaCache : classCache, (__bridge const void *)(cls));
     if (info && info->_needUpdate) {
         [info _update];
     }
     dispatch_semaphore_signal(lock);
     if (!info) {
-        info = [[YYClassInfo alloc] initWithClass:cls];
+        info = [[TPClassInfo alloc] initWithClass:cls];
         if (info) {
             dispatch_semaphore_wait(lock, DISPATCH_TIME_FOREVER);
             CFDictionarySetValue(info.isMeta ? metaCache : classCache, (__bridge const void *)(cls), (__bridge const void *)(info));

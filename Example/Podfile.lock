@@ -18,18 +18,18 @@ PODS:
     - CocoaLumberjack/Core (= 3.7.0)
   - CocoaLumberjack/Core (3.7.0)
   - ReactiveObjC (3.1.1)
-  - TPNetworking (0.0.1):
-    - TPNetworking/Base (= 0.0.1)
-    - TPNetworking/Core (= 0.0.1)
-    - TPNetworking/YYModel (= 0.0.1)
-  - TPNetworking/Base (0.0.1):
+  - TPNetworking (0.0.2):
+    - TPNetworking/Base (= 0.0.2)
+    - TPNetworking/Core (= 0.0.2)
+    - TPNetworking/TPModel (= 0.0.2)
+  - TPNetworking/Base (0.0.2):
     - AFNetworking (~> 4.0.0)
     - CocoaLumberjack
-  - TPNetworking/Core (0.0.1):
+  - TPNetworking/Core (0.0.2):
     - ReactiveObjC
     - TPNetworking/Base
-    - TPNetworking/YYModel
-  - TPNetworking/YYModel (0.0.1)
+    - TPNetworking/TPModel
+  - TPNetworking/TPModel (0.0.2)
 
 DEPENDENCIES:
   - TPNetworking (from `../`)
@@ -48,7 +48,7 @@ SPEC CHECKSUMS:
   AFNetworking: 7864c38297c79aaca1500c33288e429c3451fdce
   CocoaLumberjack: e8955b9d337ac307103b0a34fd141c32f27e53c5
   ReactiveObjC: 011caa393aa0383245f2dcf9bf02e86b80b36040
-  TPNetworking: 3b325f8a3fabba077ca97c32765e88c10baa4865
+  TPNetworking: a24f140006d1a8cfdd35f05f047fabe74e86083b
 
 PODFILE CHECKSUM: 820ce6b947d5f56afcc310bdc5fed29ea89675db
 
