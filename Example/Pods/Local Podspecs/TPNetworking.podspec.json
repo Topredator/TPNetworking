@@ -16,7 +16,7 @@
     "tag": "0.0.3"
   },
   "platforms": {
-    "ios": "8.0"
+    "ios": "9.0"
   },
   "source_files": "TPNetworking/Classes/TPNetworking.h",
   "subspecs": [
@@ -25,7 +25,7 @@
       "source_files": "TPNetworking/Classes/Base/**/*",
       "dependencies": {
         "AFNetworking": [
-          "~> 4.0.0"
+
         ],
         "CocoaLumberjack": [
 

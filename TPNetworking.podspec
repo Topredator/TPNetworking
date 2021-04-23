@@ -28,12 +28,12 @@ TODO: Add long description of the pod here.
   s.source           = { :git => 'https://github.com/Topredator/TPNetworking.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
-  s.ios.deployment_target = '8.0'
+  s.ios.deployment_target = '9.0'
 
   s.source_files = 'TPNetworking/Classes/TPNetworking.h'
   s.subspec 'Base' do |ss|
       ss.source_files = 'TPNetworking/Classes/Base/**/*'
-      ss.dependency 'AFNetworking',  '~> 4.0.0'
+      ss.dependency 'AFNetworking'
       ss.dependency 'CocoaLumberjack'
       ss.private_header_files = 'TPNetworking/Classes/Base/TPNetworkPrivate.h'
   end

@@ -14,16 +14,16 @@ PODS:
   - AFNetworking/Serialization (4.0.1)
   - AFNetworking/UIKit (4.0.1):
     - AFNetworking/NSURLSession
-  - CocoaLumberjack (3.7.0):
-    - CocoaLumberjack/Core (= 3.7.0)
-  - CocoaLumberjack/Core (3.7.0)
+  - CocoaLumberjack (3.7.2):
+    - CocoaLumberjack/Core (= 3.7.2)
+  - CocoaLumberjack/Core (3.7.2)
   - ReactiveObjC (3.1.1)
   - TPJsonModel (1.0.0)
   - TPNetworking (0.0.3):
     - TPNetworking/Base (= 0.0.3)
     - TPNetworking/Core (= 0.0.3)
   - TPNetworking/Base (0.0.3):
-    - AFNetworking (~> 4.0.0)
+    - AFNetworking
     - CocoaLumberjack
   - TPNetworking/Core (0.0.3):
     - ReactiveObjC
@@ -53,10 +53,10 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   AFNetworking: 7864c38297c79aaca1500c33288e429c3451fdce
-  CocoaLumberjack: e8955b9d337ac307103b0a34fd141c32f27e53c5
+  CocoaLumberjack: b7e05132ff94f6ae4dfa9d5bce9141893a21d9da
   ReactiveObjC: 011caa393aa0383245f2dcf9bf02e86b80b36040
   TPJsonModel: 08b25aa72d62e6991639e62280796336972352c6
-  TPNetworking: 6ac41a71148ac8775faee17b2455ff4877ac7c8a
+  TPNetworking: 19c8d6be06b02d5dc4c3677fcc10e5c0eaa26028
 
 PODFILE CHECKSUM: 8b2ead2c6402d29d2f50e6b2fdd05c3dfc29fa81
 
