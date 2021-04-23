@@ -40,12 +40,14 @@ TODO: Add long description of the pod here.
   s.subspec 'Core' do |ss|
     ss.source_files = 'TPNetworking/Classes/Core/**/*'
     ss.dependency 'TPNetworking/Base'
-    ss.dependency 'TPNetworking/TPModel'
+#    ss.dependency 'TPNetworking/TPModel'
+    ss.dependency 'TPJsonModel'
     ss.dependency 'ReactiveObjC'
   end
   s.subspec 'TPModel' do |ss|
       ss.source_files = 'TPNetworking/Classes/TPModel/**/*'
   end
+  
   # s.resource_bundles = {
   #   'TPNetworking' => ['TPNetworking/Assets/*.png']
   # }

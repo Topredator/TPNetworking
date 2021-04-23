@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		099E4A8680B713A77E02657E /* Pods_TPNetworking_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40BAD7C41813AA487E1BF04D /* Pods_TPNetworking_Example.framework */; };
+		535143A5254AD4B5000337CE /* TPPerson.m in Sources */ = {isa = PBXBuildFile; fileRef = 535143A4254AD4B5000337CE /* TPPerson.m */; };
 		6003F58E195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
 		6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58F195388D20070C39A /* CoreGraphics.framework */; };
 		6003F592195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
@@ -48,6 +49,8 @@
 		0AC2E7C7A48B5E06BDEB1D86 /* Pods-TPNetworking_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TPNetworking_Example.debug.xcconfig"; path = "Target Support Files/Pods-TPNetworking_Example/Pods-TPNetworking_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		40BAD7C41813AA487E1BF04D /* Pods_TPNetworking_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TPNetworking_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E060A90F63DC9B9E2B37770 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		535143A3254AD4B5000337CE /* TPPerson.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TPPerson.h; sourceTree = "<group>"; };
+		535143A4254AD4B5000337CE /* TPPerson.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TPPerson.m; sourceTree = "<group>"; };
 		6003F58A195388D20070C39A /* TPNetworking_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TPNetworking_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6003F58D195388D20070C39A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		6003F58F195388D20070C39A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -170,6 +173,8 @@
 				94178B922545AECE00EEEA9C /* TPBaseDataTask.m */,
 				94178B962545B2C900EEEA9C /* TPUserTask.h */,
 				94178B972545B2C900EEEA9C /* TPUserTask.m */,
+				535143A3254AD4B5000337CE /* TPPerson.h */,
+				535143A4254AD4B5000337CE /* TPPerson.m */,
 			);
 			name = "Example for TPNetworking";
 			path = TPNetworking;
@@ -422,6 +427,7 @@
 				94178B70254599ED00EEEA9C /* TPHttpDataManager.m in Sources */,
 				94178B71254599ED00EEEA9C /* TPCustomTask.m in Sources */,
 				94178B982545B2C900EEEA9C /* TPUserTask.m in Sources */,
+				535143A5254AD4B5000337CE /* TPPerson.m in Sources */,
 				94178B932545AECE00EEEA9C /* TPBaseDataTask.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

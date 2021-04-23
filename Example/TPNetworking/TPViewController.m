@@ -10,7 +10,7 @@
 
 #import "TPTestTask.h"
 #import "TPUserTask.h"
-
+#import "TPPerson.h"
 
 @interface TPViewController ()
 
@@ -31,6 +31,11 @@
         
     }];
     [self setupSubviews];
+    
+    TPStudent *student = [TPStudent url:@"https://www.baidu.com"];
+    student.req_name = @"aaaa";
+    NSLog(@"%@", [student tp_modelToJSONObject]);
+    
 }
 
 - (void)setupSubviews {
