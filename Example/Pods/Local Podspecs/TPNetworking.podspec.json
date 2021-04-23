@@ -1,6 +1,6 @@
 {
   "name": "TPNetworking",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "summary": "TPNetworking iOS系统网络库",
   "description": "TODO: Add long description of the pod here.",
   "homepage": "https://github.com/Topredator/TPNetworking",
@@ -13,10 +13,10 @@
   },
   "source": {
     "git": "https://github.com/Topredator/TPNetworking.git",
-    "tag": "0.0.2"
+    "tag": "0.0.3"
   },
   "platforms": {
-    "ios": "9.0"
+    "ios": "8.0"
   },
   "source_files": "TPNetworking/Classes/TPNetworking.h",
   "subspecs": [
@@ -40,17 +40,13 @@
         "TPNetworking/Base": [
 
         ],
-        "TPNetworking/TPModel": [
+        "TPJsonModel": [
 
         ],
         "ReactiveObjC": [
 
         ]
       }
-    },
-    {
-      "name": "TPModel",
-      "source_files": "TPNetworking/Classes/TPModel/**/*"
     }
   ]
 }

@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'TPNetworking'
-  s.version          = '0.0.2'
+  s.version          = '0.0.3'
   s.summary          = 'TPNetworking iOS系统网络库'
 
 # This description is used to generate tags and improve search results.
@@ -28,7 +28,7 @@ TODO: Add long description of the pod here.
   s.source           = { :git => 'https://github.com/Topredator/TPNetworking.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
-  s.ios.deployment_target = '9.0'
+  s.ios.deployment_target = '8.0'
 
   s.source_files = 'TPNetworking/Classes/TPNetworking.h'
   s.subspec 'Base' do |ss|
@@ -40,14 +40,9 @@ TODO: Add long description of the pod here.
   s.subspec 'Core' do |ss|
     ss.source_files = 'TPNetworking/Classes/Core/**/*'
     ss.dependency 'TPNetworking/Base'
-#    ss.dependency 'TPNetworking/TPModel'
     ss.dependency 'TPJsonModel'
     ss.dependency 'ReactiveObjC'
   end
-  s.subspec 'TPModel' do |ss|
-      ss.source_files = 'TPNetworking/Classes/TPModel/**/*'
-  end
-  
   # s.resource_bundles = {
   #   'TPNetworking' => ['TPNetworking/Assets/*.png']
   # }

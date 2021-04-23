@@ -18,20 +18,20 @@ PODS:
     - CocoaLumberjack/Core (= 3.7.0)
   - CocoaLumberjack/Core (3.7.0)
   - ReactiveObjC (3.1.1)
-  - TPNetworking (0.0.2):
-    - TPNetworking/Base (= 0.0.2)
-    - TPNetworking/Core (= 0.0.2)
-    - TPNetworking/TPModel (= 0.0.2)
-  - TPNetworking/Base (0.0.2):
+  - TPJsonModel (1.0.0)
+  - TPNetworking (0.0.3):
+    - TPNetworking/Base (= 0.0.3)
+    - TPNetworking/Core (= 0.0.3)
+  - TPNetworking/Base (0.0.3):
     - AFNetworking (~> 4.0.0)
     - CocoaLumberjack
-  - TPNetworking/Core (0.0.2):
+  - TPNetworking/Core (0.0.3):
     - ReactiveObjC
+    - TPJsonModel
     - TPNetworking/Base
-    - TPNetworking/TPModel
-  - TPNetworking/TPModel (0.0.2)
 
 DEPENDENCIES:
+  - TPJsonModel (from `https://github.com/Topredator/TPJsonModel.git`)
   - TPNetworking (from `../`)
 
 SPEC REPOS:
@@ -41,15 +41,23 @@ SPEC REPOS:
     - ReactiveObjC
 
 EXTERNAL SOURCES:
+  TPJsonModel:
+    :git: https://github.com/Topredator/TPJsonModel.git
   TPNetworking:
     :path: "../"
+
+CHECKOUT OPTIONS:
+  TPJsonModel:
+    :commit: dcc4b0872dfd0569c232f5ed2ee46064e4f7c01f
+    :git: https://github.com/Topredator/TPJsonModel.git
 
 SPEC CHECKSUMS:
   AFNetworking: 7864c38297c79aaca1500c33288e429c3451fdce
   CocoaLumberjack: e8955b9d337ac307103b0a34fd141c32f27e53c5
   ReactiveObjC: 011caa393aa0383245f2dcf9bf02e86b80b36040
-  TPNetworking: a24f140006d1a8cfdd35f05f047fabe74e86083b
+  TPJsonModel: 08b25aa72d62e6991639e62280796336972352c6
+  TPNetworking: 6ac41a71148ac8775faee17b2455ff4877ac7c8a
 
-PODFILE CHECKSUM: 820ce6b947d5f56afcc310bdc5fed29ea89675db
+PODFILE CHECKSUM: 8b2ead2c6402d29d2f50e6b2fdd05c3dfc29fa81
 
-COCOAPODS: 1.9.3
+COCOAPODS: 1.10.1

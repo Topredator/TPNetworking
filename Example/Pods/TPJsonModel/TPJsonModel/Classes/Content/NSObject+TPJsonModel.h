@@ -1,61 +1,14 @@
+//
+//  NSObject+TPJsonModel.h
+//  TPJsonModel
+//
+//  Created by Topredator on 2021/4/23.
+//
 
 #import <Foundation/Foundation.h>
 
 NS_ASSUME_NONNULL_BEGIN
-
-/**
- Provide some data-model method:
- 
- * Convert json to any object, or convert any object to json.
- * Set object properties with a key-value dictionary (like KVC).
- * Implementations of `NSCoding`, `NSCopying`, `-hash` and `-isEqual:`.
- 
- See `TPModel` protocol for custom methods.
- 
- 
- Sample Code:
-    
-     ********************** json convertor *********************
-     @@interface YYAuthor : NSObject
-     @property (nonatomic, strong) NSString *name;
-     @property (nonatomic, assign) NSDate *birthday;
-     @end
-     @implementation YYAuthor
-     @end
- 
-     @@interface YYBook : NSObject
-     @property (nonatomic, copy) NSString *name;
-     @property (nonatomic, assign) NSUInteger pages;
-     @property (nonatomic, strong) YYAuthor *author;
-     @end
-     @implementation YYBook
-     @end
-    
-     int main() {
-         // create model from json
-         YYBook *book = [YYBook tp_modelWithJSON:@"{\"name\": \"Harry Potter\", \"pages\": 256, \"author\": {\"name\": \"J.K.Rowling\", \"birthday\": \"1965-07-31\" }}"];
- 
-         // convert model to json
-         NSString *json = [book tp_modelToJSONString];
-         // {"author":{"name":"J.K.Rowling","birthday":"1965-07-31T00:00:00+0000"},"name":"Harry Potter","pages":256}
-     }
- 
-     ********************** Coding/Copying/hash/equal *********************
-     @@interface YYShadow :NSObject <NSCoding, NSCopying>
-     @property (nonatomic, copy) NSString *name;
-     @property (nonatomic, assign) CGSize size;
-     @end
- 
-     @implementation YYShadow
-     - (void)encodeWithCoder:(NSCoder *)aCoder { [self tp_modelEncodeWithCoder:aCoder]; }
-     - (id)initWithCoder:(NSCoder *)aDecoder { self = [super init]; return [self tp_modelInitWithCoder:aDecoder]; }
-     - (id)copyWithZone:(NSZone *)zone { return [self tp_modelCopy]; }
-     - (NSUInteger)hash { return [self tp_modelHash]; }
-     - (BOOL)isEqual:(id)object { return [self tp_modelIsEqual:object]; }
-     @end
- 
- */
-@interface NSObject (TPModel)
+@interface NSObject (TPJsonModel)
 
 /**
  Creates and returns a new instance of the receiver from a json.
@@ -139,7 +92,7 @@ NS_ASSUME_NONNULL_BEGIN
  @return A json string's data, or nil if an error occurs.
  
  @discussion Any of the invalid property is ignored.
- If the reciver is `NSArray`, `NSDictionary` or `NSSet`, it will also convert the 
+ If the reciver is `NSArray`, `NSDictionary` or `NSSet`, it will also convert the
  inner object to json string.
  */
 - (nullable NSData *)tp_modelToJSONData;
@@ -150,7 +103,7 @@ NS_ASSUME_NONNULL_BEGIN
  @return A json string, or nil if an error occurs.
  
  @discussion Any of the invalid property is ignored.
- If the reciver is `NSArray`, `NSDictionary` or `NSSet`, it will also convert the 
+ If the reciver is `NSArray`, `NSDictionary` or `NSSet`, it will also convert the
  inner object to json string.
  */
 - (nullable NSString *)tp_modelToJSONString;
@@ -201,6 +154,9 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (NSString *)tp_modelDescription;
 
+/// json数组 转 model数组
+/// @param jsons json数组
++ (NSArray *)tp_jsonsToModelWithJsons:(NSArray *)jsons;
 @end
 
 
@@ -208,7 +164,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  Provide some data-model method for NSArray.
  */
-@interface NSArray (TPModel)
+@interface NSArray (TPJsonModel)
 
 /**
  Creates and returns an array from a json-array.
@@ -229,7 +185,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  Provide some data-model method for NSDictionary.
  */
-@interface NSDictionary (TPModel)
+@interface NSDictionary (TPJsonModel)
 
 /**
  Creates and returns a dictionary from a json.
@@ -251,7 +207,7 @@ NS_ASSUME_NONNULL_BEGIN
  more method in this protocol to change the default key-value transform process.
  There's no need to add '<TPModel>' to your class header.
  */
-@protocol TPModel <NSObject>
+@protocol TPJsonModel <NSObject>
 @optional
 
 /**
@@ -262,7 +218,7 @@ NS_ASSUME_NONNULL_BEGIN
  
  Example:
     
-    json: 
+    json:
         {
             "n":"Harry Pottery",
             "p": 256,
@@ -297,7 +253,7 @@ NS_ASSUME_NONNULL_BEGIN
  The generic class mapper for container properties.
  
  @discussion If the property is a container object, such as NSArray/NSSet/NSDictionary,
- implements this method and returns a property->class mapper, tells which kind of 
+ implements this method and returns a property->class mapper, tells which kind of
  object will be add to the array/set/dictionary.
  
   Example:
@@ -327,7 +283,7 @@ NS_ASSUME_NONNULL_BEGIN
  use the method to choose custom class based on dictionary data.
  
  @discussion If the model implements this method, it will be called to determine resulting class
- during `+modelWithJSON:`, `+modelWithDictionary:`, conveting object of properties of parent objects 
+ during `+modelWithJSON:`, `+modelWithDictionary:`, conveting object of properties of parent objects
  (both singular and containers via `+tp_modelContainerPropertyGenericClass`).
  
  Example:
@@ -388,7 +344,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 /**
  If the default json-to-model transform does not fit to your model object, implement
- this method to do additional process. You can also use this method to validate the 
+ this method to do additional process. You can also use this method to validate the
  model's properties.
  
  @discussion If the model implements this method, it will be called at the end of
@@ -428,5 +384,6 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (NSArray *)tp_modelPenetrateKeyPathList;
 @end
+
 
 NS_ASSUME_NONNULL_END

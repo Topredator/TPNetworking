@@ -7,11 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <TPNetworking/TPModel.h>
-
+#import <TPJsonModel/TPJsonModel.h>
 NS_ASSUME_NONNULL_BEGIN
 
-@interface TPPerson : NSObject <TPModel>
+@interface TPPerson : NSObject <TPJsonModel>
 @property (nonatomic, copy) NSString *req_token;
 @property (nonatomic, copy) NSString *url;
 + (instancetype)share;

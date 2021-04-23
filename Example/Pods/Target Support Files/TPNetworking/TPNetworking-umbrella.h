@@ -18,9 +18,6 @@
 #import "TPNetworkEnv.h"
 #import "TPHttpDataTask.h"
 #import "TPHttpManager+TPRacExtension.h"
-#import "NSObject+TPModel.h"
-#import "TPClassInfo.h"
-#import "TPModel.h"
 
 FOUNDATION_EXPORT double TPNetworkingVersionNumber;
 FOUNDATION_EXPORT const unsigned char TPNetworkingVersionString[];

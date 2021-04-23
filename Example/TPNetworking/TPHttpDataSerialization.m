@@ -7,8 +7,8 @@
 //
 
 #import "TPHttpDataSerialization.h"
+#import <TPJsonModel/TPJsonModel.h>
 
-#import <TPNetworking/TPModel.h>
 @implementation TPHTTPDataRequestSerializer
 - (instancetype)init {
     self = [super init];

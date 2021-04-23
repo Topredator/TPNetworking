@@ -1,44 +1,49 @@
+//
+//  TPJsonClassInfo.m
+//  TPJsonModel
+//
+//  Created by Topredator on 2021/4/23.
+//
 
-
-#import "TPClassInfo.h"
+#import "TPJsonClassInfo.h"
 #import <objc/runtime.h>
 
-TPEncodingType TPEncodingGetType(const char *typeEncoding) {
+TPJsonEncodingType TPJsonEncodingGetType(const char *typeEncoding) {
     char *type = (char *)typeEncoding;
-    if (!type) return TPEncodingTypeUnknown;
+    if (!type) return TPJsonEncodingTypeUnknown;
     size_t len = strlen(type);
-    if (len == 0) return TPEncodingTypeUnknown;
+    if (len == 0) return TPJsonEncodingTypeUnknown;
     
-    TPEncodingType qualifier = 0;
+    TPJsonEncodingType qualifier = 0;
     bool prefix = true;
     while (prefix) {
         switch (*type) {
             case 'r': {
-                qualifier |= TPEncodingTypeQualifierConst;
+                qualifier |= TPJsonEncodingTypeQualifierConst;
                 type++;
             } break;
             case 'n': {
-                qualifier |= TPEncodingTypeQualifierIn;
+                qualifier |= TPJsonEncodingTypeQualifierIn;
                 type++;
             } break;
             case 'N': {
-                qualifier |= TPEncodingTypeQualifierInout;
+                qualifier |= TPJsonEncodingTypeQualifierInout;
                 type++;
             } break;
             case 'o': {
-                qualifier |= TPEncodingTypeQualifierOut;
+                qualifier |= TPJsonEncodingTypeQualifierOut;
                 type++;
             } break;
             case 'O': {
-                qualifier |= TPEncodingTypeQualifierBycopy;
+                qualifier |= TPJsonEncodingTypeQualifierBycopy;
                 type++;
             } break;
             case 'R': {
-                qualifier |= TPEncodingTypeQualifierByref;
+                qualifier |= TPJsonEncodingTypeQualifierByref;
                 type++;
             } break;
             case 'V': {
-                qualifier |= TPEncodingTypeQualifierOneway;
+                qualifier |= TPJsonEncodingTypeQualifierOneway;
                 type++;
             } break;
             default: { prefix = false; } break;
@@ -46,42 +51,42 @@ TPEncodingType TPEncodingGetType(const char *typeEncoding) {
     }
 
     len = strlen(type);
-    if (len == 0) return TPEncodingTypeUnknown | qualifier;
+    if (len == 0) return TPJsonEncodingTypeUnknown | qualifier;
 
     switch (*type) {
-        case 'v': return TPEncodingTypeVoid | qualifier;
-        case 'B': return TPEncodingTypeBool | qualifier;
-        case 'c': return TPEncodingTypeInt8 | qualifier;
-        case 'C': return TPEncodingTypeUInt8 | qualifier;
-        case 's': return TPEncodingTypeInt16 | qualifier;
-        case 'S': return TPEncodingTypeUInt16 | qualifier;
-        case 'i': return TPEncodingTypeInt32 | qualifier;
-        case 'I': return TPEncodingTypeUInt32 | qualifier;
-        case 'l': return TPEncodingTypeInt32 | qualifier;
-        case 'L': return TPEncodingTypeUInt32 | qualifier;
-        case 'q': return TPEncodingTypeInt64 | qualifier;
-        case 'Q': return TPEncodingTypeUInt64 | qualifier;
-        case 'f': return TPEncodingTypeFloat | qualifier;
-        case 'd': return TPEncodingTypeDouble | qualifier;
-        case 'D': return TPEncodingTypeLongDouble | qualifier;
-        case '#': return TPEncodingTypeClass | qualifier;
-        case ':': return TPEncodingTypeSEL | qualifier;
-        case '*': return TPEncodingTypeCString | qualifier;
-        case '^': return TPEncodingTypePointer | qualifier;
-        case '[': return TPEncodingTypeCArray | qualifier;
-        case '(': return TPEncodingTypeUnion | qualifier;
-        case '{': return TPEncodingTypeStruct | qualifier;
+        case 'v': return TPJsonEncodingTypeVoid | qualifier;
+        case 'B': return TPJsonEncodingTypeBool | qualifier;
+        case 'c': return TPJsonEncodingTypeInt8 | qualifier;
+        case 'C': return TPJsonEncodingTypeUInt8 | qualifier;
+        case 's': return TPJsonEncodingTypeInt16 | qualifier;
+        case 'S': return TPJsonEncodingTypeUInt16 | qualifier;
+        case 'i': return TPJsonEncodingTypeInt32 | qualifier;
+        case 'I': return TPJsonEncodingTypeUInt32 | qualifier;
+        case 'l': return TPJsonEncodingTypeInt32 | qualifier;
+        case 'L': return TPJsonEncodingTypeUInt32 | qualifier;
+        case 'q': return TPJsonEncodingTypeInt64 | qualifier;
+        case 'Q': return TPJsonEncodingTypeUInt64 | qualifier;
+        case 'f': return TPJsonEncodingTypeFloat | qualifier;
+        case 'd': return TPJsonEncodingTypeDouble | qualifier;
+        case 'D': return TPJsonEncodingTypeLongDouble | qualifier;
+        case '#': return TPJsonEncodingTypeClass | qualifier;
+        case ':': return TPJsonEncodingTypeSEL | qualifier;
+        case '*': return TPJsonEncodingTypeCString | qualifier;
+        case '^': return TPJsonEncodingTypePointer | qualifier;
+        case '[': return TPJsonEncodingTypeCArray | qualifier;
+        case '(': return TPJsonEncodingTypeUnion | qualifier;
+        case '{': return TPJsonEncodingTypeStruct | qualifier;
         case '@': {
             if (len == 2 && *(type + 1) == '?')
-                return TPEncodingTypeBlock | qualifier;
+                return TPJsonEncodingTypeBlock | qualifier;
             else
-                return TPEncodingTypeObject | qualifier;
+                return TPJsonEncodingTypeObject | qualifier;
         }
-        default: return TPEncodingTypeUnknown | qualifier;
+        default: return TPJsonEncodingTypeUnknown | qualifier;
     }
 }
 
-@implementation TPClassIvarInfo
+@implementation TPJsonClassIvarInfo
 
 - (instancetype)initWithIvar:(Ivar)ivar {
     if (!ivar) return nil;
@@ -95,14 +100,14 @@ TPEncodingType TPEncodingGetType(const char *typeEncoding) {
     const char *typeEncoding = ivar_getTypeEncoding(ivar);
     if (typeEncoding) {
         _typeEncoding = [NSString stringWithUTF8String:typeEncoding];
-        _type = TPEncodingGetType(typeEncoding);
+        _type = TPJsonEncodingGetType(typeEncoding);
     }
     return self;
 }
 
 @end
 
-@implementation TPClassMethodInfo
+@implementation TPJsonClassMethodInfo
 
 - (instancetype)initWithMethod:(Method)method {
     if (!method) return nil;
@@ -139,7 +144,7 @@ TPEncodingType TPEncodingGetType(const char *typeEncoding) {
 
 @end
 
-@implementation TPClassPropertyInfo
+@implementation TPJsonClassPropertyInfo
 
 - (instancetype)initWithProperty:(objc_property_t)property {
     if (!property) return nil;
@@ -150,7 +155,7 @@ TPEncodingType TPEncodingGetType(const char *typeEncoding) {
         _name = [NSString stringWithUTF8String:name];
     }
     
-    TPEncodingType type = 0;
+    TPJsonEncodingType type = 0;
     unsigned int attrCount;
     objc_property_attribute_t *attrs = property_copyAttributeList(property, &attrCount);
     for (unsigned int i = 0; i < attrCount; i++) {
@@ -158,9 +163,9 @@ TPEncodingType TPEncodingGetType(const char *typeEncoding) {
             case 'T': { // Type encoding
                 if (attrs[i].value) {
                     _typeEncoding = [NSString stringWithUTF8String:attrs[i].value];
-                    type = TPEncodingGetType(attrs[i].value);
+                    type = TPJsonEncodingGetType(attrs[i].value);
                     
-                    if ((type & TPEncodingTypeMask) == TPEncodingTypeObject && _typeEncoding.length) {
+                    if ((type & TPJsonEncodingTypeMask) == TPJsonEncodingTypeObject && _typeEncoding.length) {
                         NSScanner *scanner = [NSScanner scannerWithString:_typeEncoding];
                         if (![scanner scanString:@"@\"" intoString:NULL]) continue;
                         
@@ -190,31 +195,31 @@ TPEncodingType TPEncodingGetType(const char *typeEncoding) {
                 }
             } break;
             case 'R': {
-                type |= TPEncodingTypePropertyReadonly;
+                type |= TPJsonEncodingTypePropertyReadonly;
             } break;
             case 'C': {
-                type |= TPEncodingTypePropertyCopy;
+                type |= TPJsonEncodingTypePropertyCopy;
             } break;
             case '&': {
-                type |= TPEncodingTypePropertyRetain;
+                type |= TPJsonEncodingTypePropertyRetain;
             } break;
             case 'N': {
-                type |= TPEncodingTypePropertyNonatomic;
+                type |= TPJsonEncodingTypePropertyNonatomic;
             } break;
             case 'D': {
-                type |= TPEncodingTypePropertyDynamic;
+                type |= TPJsonEncodingTypePropertyDynamic;
             } break;
             case 'W': {
-                type |= TPEncodingTypePropertyWeak;
+                type |= TPJsonEncodingTypePropertyWeak;
             } break;
             case 'G': {
-                type |= TPEncodingTypePropertyCustomGetter;
+                type |= TPJsonEncodingTypePropertyCustomGetter;
                 if (attrs[i].value) {
                     _getter = NSSelectorFromString([NSString stringWithUTF8String:attrs[i].value]);
                 }
             } break;
             case 'S': {
-                type |= TPEncodingTypePropertyCustomSetter;
+                type |= TPJsonEncodingTypePropertyCustomSetter;
                 if (attrs[i].value) {
                     _setter = NSSelectorFromString([NSString stringWithUTF8String:attrs[i].value]);
                 }
@@ -241,7 +246,7 @@ TPEncodingType TPEncodingGetType(const char *typeEncoding) {
 
 @end
 
-@implementation TPClassInfo
+@implementation TPJsonClassInfo
 {
     BOOL _needUpdate;
 }
@@ -274,7 +279,7 @@ TPEncodingType TPEncodingGetType(const char *typeEncoding) {
         NSMutableDictionary *methodInfos = [NSMutableDictionary new];
         _methodInfos = methodInfos;
         for (unsigned int i = 0; i < methodCount; i++) {
-            TPClassMethodInfo *info = [[TPClassMethodInfo alloc] initWithMethod:methods[i]];
+            TPJsonClassMethodInfo *info = [[TPJsonClassMethodInfo alloc] initWithMethod:methods[i]];
             if (info.name) methodInfos[info.name] = info;
         }
         free(methods);
@@ -285,7 +290,7 @@ TPEncodingType TPEncodingGetType(const char *typeEncoding) {
         NSMutableDictionary *propertyInfos = [NSMutableDictionary new];
         _propertyInfos = propertyInfos;
         for (unsigned int i = 0; i < propertyCount; i++) {
-            TPClassPropertyInfo *info = [[TPClassPropertyInfo alloc] initWithProperty:properties[i]];
+            TPJsonClassPropertyInfo *info = [[TPJsonClassPropertyInfo alloc] initWithProperty:properties[i]];
             if (info.name) propertyInfos[info.name] = info;
         }
         free(properties);
@@ -297,7 +302,7 @@ TPEncodingType TPEncodingGetType(const char *typeEncoding) {
         NSMutableDictionary *ivarInfos = [NSMutableDictionary new];
         _ivarInfos = ivarInfos;
         for (unsigned int i = 0; i < ivarCount; i++) {
-            TPClassIvarInfo *info = [[TPClassIvarInfo alloc] initWithIvar:ivars[i]];
+            TPJsonClassIvarInfo *info = [[TPJsonClassIvarInfo alloc] initWithIvar:ivars[i]];
             if (info.name) ivarInfos[info.name] = info;
         }
         free(ivars);
@@ -330,13 +335,13 @@ TPEncodingType TPEncodingGetType(const char *typeEncoding) {
         lock = dispatch_semaphore_create(1);
     });
     dispatch_semaphore_wait(lock, DISPATCH_TIME_FOREVER);
-    TPClassInfo *info = CFDictionaryGetValue(class_isMetaClass(cls) ? metaCache : classCache, (__bridge const void *)(cls));
+    TPJsonClassInfo *info = CFDictionaryGetValue(class_isMetaClass(cls) ? metaCache : classCache, (__bridge const void *)(cls));
     if (info && info->_needUpdate) {
         [info _update];
     }
     dispatch_semaphore_signal(lock);
     if (!info) {
-        info = [[TPClassInfo alloc] initWithClass:cls];
+        info = [[TPJsonClassInfo alloc] initWithClass:cls];
         if (info) {
             dispatch_semaphore_wait(lock, DISPATCH_TIME_FOREVER);
             CFDictionarySetValue(info.isMeta ? metaCache : classCache, (__bridge const void *)(cls), (__bridge const void *)(info));

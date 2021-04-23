@@ -17,8 +17,6 @@
 /// Core
 #import "TPHttpDataTask.h"
 #import "TPHttpManager+TPRacExtension.h"
-/// TPModel
-#import "TPModel.h"
 
 
 #endif /* TPNetworking_h */

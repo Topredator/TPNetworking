@@ -6,11 +6,11 @@
 //
 
 #import "TPHttpTask.h"
-#import "TPModel.h"
+#import <TPJsonModel/TPJsonModel.h>
 #import <ReactiveObjC/ReactiveObjC.h>
 NS_ASSUME_NONNULL_BEGIN
 
-@interface TPHttpDataTask : TPHttpTask <TPModel>
+@interface TPHttpDataTask : TPHttpTask <TPJsonModel>
 /**
  持久化 解档获取请求task
  */

@@ -4,7 +4,8 @@ platform :ios, '9.0'
 
 target 'TPNetworking_Example' do
   pod 'TPNetworking', :path => '../'
-
+  pod 'TPJsonModel', :git => 'https://github.com/Topredator/TPJsonModel.git'
+  
   target 'TPNetworking_Tests' do
     inherit! :search_paths
 
